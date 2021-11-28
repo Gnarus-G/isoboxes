@@ -1,4 +1,5 @@
 import Box from "../base/Box";
+import BoxHeader from "../base/BoxHeader";
 import { fourBytesHolding } from "../utils";
 
 export default class MovieFragmentHeaderBox extends Box {
@@ -6,7 +7,7 @@ export default class MovieFragmentHeaderBox extends Box {
   private readonly sequence_number = MovieFragmentHeaderBox.sequence_count++;
 
   constructor() {
-    super("mfhd");
+    super(new BoxHeader("mfhd"));
   }
 
   protected override fieldsAsBuffer(): Buffer {

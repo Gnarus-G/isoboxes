@@ -1,22 +1,16 @@
-import Uint from "./Uint";
+import BoxHeader from "./BoxHeader";
 
 export default abstract class Box {
-  protected size: Uint = new Uint(8);
-  private type: string;
   protected children: Array<Box> = [];
 
-  constructor(type: string) {
-    if (type.length !== 4)
-      throw new Error("Invalid box type: must be 4 characters long");
-    this.type = type;
-  }
+  constructor(protected header: BoxHeader) {}
 
   getSize() {
-    return this.size.getValue();
+    return this.header.size.getValue();
   }
 
   add(box: Box) {
-    this.size.increment(box.getSize());
+    this.header.size.increment(box.getSize());
     this.children.push(box);
     return this;
   }
@@ -25,8 +19,7 @@ export default abstract class Box {
 
   toBuffer(): Buffer {
     const buffer = Buffer.concat([
-      this.size.toBuffer(),
-      Buffer.from(this.type),
+      this.header.toBuffer(),
       this.fieldsAsBuffer(),
       ...this.children.map((b) => b.toBuffer()),
     ]);
@@ -49,8 +42,6 @@ export default abstract class Box {
       .map((box) => "  ".repeat(i) + box.toStringAux(i + 1))
       .join("");
 
-    return `[${
-      this.type
-    }] ${this.size.getValue()}${fieldsString}\n${childrenString}`;
+    return `${this.header.toString()}${fieldsString}\n${childrenString}`;
   }
 }

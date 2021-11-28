@@ -14,7 +14,7 @@ export default class Uint {
 
   toBuffer() {
     const buff = Buffer.alloc(this.size, 0);
-    buff.writeIntBE(this.value, 0, this.size);
+    buff.writeUIntBE(this.value, 0, this.size);
     return buff;
   }
 }

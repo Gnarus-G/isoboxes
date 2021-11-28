@@ -1,9 +1,10 @@
 import Box from "../base/Box";
+import BoxHeader from "../base/BoxHeader";
 import { EMPTY_BUFFER } from "../utils";
 
 export default class MovieFragmentBox extends Box {
   constructor() {
-    super("moof");
+    super(new BoxHeader("moof"));
   }
 
   protected fieldsAsBuffer(): Buffer {

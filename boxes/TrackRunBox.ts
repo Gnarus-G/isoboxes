@@ -1,9 +1,10 @@
 import Box from "../base/Box";
+import BoxHeader from "../base/BoxHeader";
 import { EMPTY_BUFFER } from "../utils";
 
 export default class TrackRunBox extends Box {
   constructor() {
-    super("trun");
+    super(new BoxHeader("trun"));
   }
 
   protected fieldsAsBuffer(): Buffer {
