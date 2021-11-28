@@ -1,7 +1,6 @@
-import { EMPTY_BUFFER } from "../utils";
 import Uint from "./Uint";
 
-export default class Box {
+export default abstract class Box {
   protected size: Uint = new Uint(8);
   private type: string;
   protected children: Array<Box> = [];
@@ -22,9 +21,7 @@ export default class Box {
     return this;
   }
 
-  protected fieldsAsBuffer(): Buffer {
-    return EMPTY_BUFFER;
-  }
+  protected abstract fieldsAsBuffer(): Buffer;
 
   toBuffer(): Buffer {
     const buffer = Buffer.concat([
@@ -41,9 +38,7 @@ export default class Box {
     return this.toStringAux();
   }
 
-  protected fieldsAsString(): string {
-    return "";
-  }
+  protected abstract fieldsAsString(): string | null;
 
   private toStringAux(i = 1): string {
     const fieldsString = this.fieldsAsString()

@@ -1,8 +1,11 @@
+import MovieFragmentBox from "../boxes/MovieFragmentBox";
+import TrackFragmentBox from "../boxes/TrackFragmentBox";
+import TrackFragmentHeaderBox from "../boxes/TrackFragmentHeaderBox";
+import TrackRunBox from "../boxes/TrackRunBox";
 import { b, bufferOf, fourBytesHolding } from "../utils";
-import Box from "./Box";
 
 describe("plain boxes", () => {
-  const moof = new Box("moof");
+  const moof = new MovieFragmentBox();
   it("buffers the box types", () =>
     expect(moof.toBuffer()).toEqual(
       bufferOf(Buffer.alloc(4, fourBytesHolding(8)), b`moof`)
@@ -12,13 +15,15 @@ describe("plain boxes", () => {
     expect(moof.toString()).toBe(`[moof] 8\n`));
 
   describe("adding a box as a child", () => {
-    const moof = new Box("moof").add(new Box("traf"));
+    const moof = new MovieFragmentBox().add(new TrackFragmentBox());
 
     it("increases the parent box size by the new child's size", () =>
       expect(moof.getSize()).toBe(16));
 
     it("adds it to the collection of children", () => {
-      const traf = new Box("traf").add(new Box("tfhd")).add(new Box("trun"));
+      const traf = new TrackFragmentBox()
+        .add(new TrackFragmentHeaderBox())
+        .add(new TrackRunBox());
       moof.add(traf);
 
       expect(moof.toString()).toEqual(moofTestString);

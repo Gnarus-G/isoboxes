@@ -1,16 +1,15 @@
 import Box from "../base/Box";
 import { EMPTY_BUFFER } from "../utils";
 
-export default class MovieFragmentBox extends Box {
+export default class TrackFragmentBox extends Box {
   constructor() {
-    super("moof");
+    super("traf");
   }
 
   protected fieldsAsBuffer(): Buffer {
-    return EMPTY_BUFFER; //moof has no fields of it own
+    return EMPTY_BUFFER;
   }
-
   protected fieldsAsString(): string | null {
-    return null; //again, moof has no fields of it own
+    return null
   }
 }
