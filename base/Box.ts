@@ -1,3 +1,4 @@
+import { EMPTY_BUFFER } from "../utils";
 import Uint from "./Uint";
 
 export default class Box {
@@ -21,10 +22,15 @@ export default class Box {
     return this;
   }
 
+  protected fieldsAsBuffer(): Buffer {
+    return EMPTY_BUFFER;
+  }
+
   toBuffer(): Buffer {
     const buffer = Buffer.concat([
       this.size.toBuffer(),
       Buffer.from(this.type),
+      this.fieldsAsBuffer(),
       ...this.children.map((b) => b.toBuffer()),
     ]);
 
@@ -35,11 +41,21 @@ export default class Box {
     return this.toStringAux();
   }
 
+  protected fieldsAsString(): string {
+    return "";
+  }
+
   private toStringAux(i = 1): string {
+    const fieldsString = this.fieldsAsString()
+      ? "\n" + "  ".repeat(i) + this.fieldsAsString()
+      : "";
+
     const childrenString = this.children
       .map((box) => "  ".repeat(i) + box.toStringAux(i + 1))
       .join("");
 
-    return `[${this.type}] ${this.size.getValue()}\n${childrenString}`;
+    return `[${
+      this.type
+    }] ${this.size.getValue()}${fieldsString}\n${childrenString}`;
   }
 }

@@ -2,13 +2,14 @@ import { b, bufferOf, fourBytesHolding } from "../utils";
 import Box from "./Box";
 
 describe("plain boxes", () => {
-  it("buffers the box types", () => {
-    const moof = new Box("moof");
+  const moof = new Box("moof");
+  it("buffers the box types", () =>
     expect(moof.toBuffer()).toEqual(
-      bufferOf(Buffer.alloc(4, Buffer.of(0, 0, 0, 8)), b`moof`)
-    );
-    expect(moof.toString()).toBe(`[moof] 8\n`);
-  });
+      bufferOf(Buffer.alloc(4, fourBytesHolding(8)), b`moof`)
+    ));
+
+  it("should serialize the header as string", () =>
+    expect(moof.toString()).toBe(`[moof] 8\n`));
 
   describe("adding a box as a child", () => {
     const moof = new Box("moof").add(new Box("traf"));
