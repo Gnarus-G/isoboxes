@@ -4,7 +4,7 @@ import TrackFragmentHeaderBox from "../boxes/TrackFragmentHeaderBox";
 import TrackRunBox from "../boxes/TrackRunBox";
 import { b, bufferOf, fourBytesHolding } from "../utils";
 
-describe("plain boxes", () => {
+describe("boxes", () => {
   const moof = new MovieFragmentBox();
   it("buffers the box types", () =>
     expect(moof.toBuffer()).toEqual(

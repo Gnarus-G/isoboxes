@@ -1,4 +1,4 @@
-import { b, bufferOf, fourBytesHolding } from "../utils";
+import { b, bufferOf, fourBytesHolding, zeroBytes } from "../utils";
 import MovieFragmentBox from "./MovieFragmentBox";
 import MovieFragmentHeaderBox from "./MovieFragmentHeaderBox";
 
@@ -20,8 +20,9 @@ describe("mfhd box", () => {
   const expectSequenceNumber = (mfhd: MovieFragmentHeaderBox, num: number) =>
     expect(mfhd.toBuffer()).toEqual(
       bufferOf(
-        Buffer.alloc(4, fourBytesHolding(8)),
+        Buffer.alloc(4, fourBytesHolding(16)),
         b`mfhd`,
+        zeroBytes(4),
         fourBytesHolding(num)
       )
     );
@@ -43,9 +44,9 @@ describe("mfhd box", () => {
   });
 
   it("serializes the box as string", () => {
-    expect(mfhd1.toString()).toBe("[mfhd] 8\n  sequence_number=1\n");
+    expect(mfhd1.toString()).toBe("[mfhd] 16\n  sequence_number=1\n");
     expect(new MovieFragmentHeaderBox().toString()).toBe(
-      "[mfhd] 8\n  sequence_number=4\n"
+      "[mfhd] 16\n  sequence_number=4\n"
     );
   });
 });
