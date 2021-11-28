@@ -1,18 +1,5 @@
 import { b, bufferOf, fourBytesHolding, zeroBytes } from "../utils";
-import MovieFragmentBox from "./MovieFragmentBox";
 import MovieFragmentHeaderBox from "./MovieFragmentHeaderBox";
-
-describe("moof box", () => {
-  const moof = new MovieFragmentBox();
-
-  it("buffers a box", () =>
-    expect(moof.toBuffer()).toEqual(
-      bufferOf(Buffer.alloc(4, fourBytesHolding(8)), b`moof`)
-    ));
-
-  it("serializes the box as string", () =>
-    expect(moof.toString()).toBe("[moof] 8\n"));
-});
 
 describe("mfhd box", () => {
   const mfhd1 = new MovieFragmentHeaderBox();
