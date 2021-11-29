@@ -1,5 +1,10 @@
 export const EMPTY_BUFFER = Buffer.allocUnsafe(0);
 
+/**
+ * 
+ * @param value 
+ * @returns a {@link Buffer} with the value written in it as a uint32
+ */
 export const fourBytesHolding = (value: number) => {
   const bytes = Buffer.alloc(4);
   return bytes.writeUInt32BE(value), bytes;

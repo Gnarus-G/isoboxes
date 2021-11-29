@@ -1,7 +1,7 @@
-import Uint from "./Uint";
+import Uint32 from "./Uint32";
 
 export default class BoxHeader {
-  readonly #size: Uint = new Uint(8);
+  readonly #size: Uint32 = new Uint32(8);
 
   constructor(private type: string) {
     if (type.length !== 4)

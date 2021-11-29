@@ -8,7 +8,7 @@ export default class MovieFragmentHeaderBox extends Box {
   private readonly sequence_number = MovieFragmentHeaderBox.sequence_count++;
 
   constructor() {
-    super(new FullBoxHeader("mfhd", 0, new Flags(0)));
+    super(new FullBoxHeader("mfhd", 256, new Flags(0)));
     this.header.size.increment(4);
   }
 
