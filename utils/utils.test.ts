@@ -1,6 +1,7 @@
 import {
   b,
   bufferOf,
+  eightBytesHolding,
   EMPTY_BUFFER,
   fourBytesHolding,
   zeroBytes,
@@ -8,6 +9,7 @@ import {
 
 describe("b function", () => {
   it("should return a buffer", () => expect(b`sd`).toBeInstanceOf(Buffer));
+
   it("should buffer the string", () => expect(b`sd`.toString()).toBe(`sd`));
 });
 
@@ -32,6 +34,17 @@ describe("buffersOf function", () => {
 
 describe("fourBytesHolding function", () => {
   it("allocates 4 bytes", () => expect(fourBytesHolding(0).byteLength).toBe(4));
+
   it("writes the given value", () =>
     expect(fourBytesHolding(89754).readInt32BE()).toBe(89754));
+});
+
+describe("eightBytesHolding function", () => {
+  it("allocates 8 bytes", () =>
+    expect(eightBytesHolding(BigInt(0)).byteLength).toBe(8));
+
+  it("writes the given value", () =>
+    expect(eightBytesHolding(BigInt(89754)).readBigUInt64BE()).toBe(
+      BigInt(89754)
+    ));
 });
