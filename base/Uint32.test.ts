@@ -1,3 +1,4 @@
+import { iterate } from "../utils";
 import Uint32 from "./Uint32";
 
 const MAX_UINT32 = 2 ** 32 - 1;
@@ -26,10 +27,3 @@ describe("uint32", () => {
     });
   });
 });
-
-function iterate(from: number, to: number) {
-  return Array(to)
-    .fill(null)
-    .map((_, i) => i + 1)
-    .filter((i) => i >= from);
-}

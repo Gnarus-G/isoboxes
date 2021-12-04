@@ -2,7 +2,8 @@ import Box from "../base/Box";
 import Flags from "../base/Flags";
 import FullBoxHeader from "../base/FullBoxHeader";
 import Uint32 from "../base/Uint32";
-import { eightBytesHolding, EMPTY_BUFFER } from "../utils";
+import Uint64 from "../base/Uint64";
+import { EMPTY_BUFFER } from "../utils";
 
 export enum TfFlags {
   BASE_DATA_OFFSET_PRESENT = 0x000001,
@@ -16,7 +17,7 @@ export enum TfFlags {
 
 type TfFields = {
   trackID: Uint32;
-  base_data_offset?: bigint;
+  base_data_offset?: Uint64;
   sampleDescriptionIndex?: Uint32;
   defaultSampleDuration?: Uint32;
   defaultSampleSize?: Uint32;
@@ -36,9 +37,7 @@ export default class TrackFragmentHeaderBox extends Box {
   protected fieldsAsBuffer(): Buffer {
     return Buffer.concat([
       this.fields.trackID.toBuffer(),
-      this.fields.base_data_offset != null
-        ? eightBytesHolding(this.fields.base_data_offset)
-        : EMPTY_BUFFER,
+      this.fields.base_data_offset?.toBuffer() ?? EMPTY_BUFFER,
       this.fields.sampleDescriptionIndex?.toBuffer() ?? EMPTY_BUFFER,
       this.fields.defaultSampleDuration?.toBuffer() ?? EMPTY_BUFFER,
       this.fields.defaultSampleSize?.toBuffer() ?? EMPTY_BUFFER,
@@ -48,6 +47,7 @@ export default class TrackFragmentHeaderBox extends Box {
 
   protected fieldsAsString(): string {
     return `track ID=${this.fields.trackID.getValue()}`;
+    //TODO: define and test strings for each field
   }
 }
 

@@ -1,4 +1,5 @@
 import Uint32 from "../base/Uint32";
+import Uint64 from "../base/Uint64";
 import { b, bufferOf, eightBytesHolding, fourBytesHolding } from "../utils";
 import TrackFragmentHeaderBox from "./TrackFragmentHeaderBox";
 
@@ -23,7 +24,7 @@ describe("tfhd box", () => {
   describe("adding optional fields", () => {
     const tfhd = new TrackFragmentHeaderBox({
       trackID: new Uint32(1),
-      base_data_offset: BigInt(0),
+      base_data_offset: new Uint64(0),
       sampleDescriptionIndex: new Uint32(1),
       defaultSampleDuration: new Uint32(512),
       defaultSampleSize: new Uint32(523),
@@ -40,7 +41,7 @@ describe("tfhd box", () => {
           fourBytesHolding(0x1 | 0x2 | 0x8 | 0x10 | 0x20), //all fields are present
           //fields,
           fourBytesHolding(1),
-          eightBytesHolding(BigInt(0)),
+          eightBytesHolding(0n),
           fourBytesHolding(1),
           fourBytesHolding(512),
           fourBytesHolding(523),

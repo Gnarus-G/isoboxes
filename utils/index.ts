@@ -25,3 +25,10 @@ export const zeroBytes = (size: number) => {
 
 export const bufferOf = (...buffers: Array<Buffer>) =>
   Buffer.concat([...buffers]);
+
+export function iterate(from: number, to: number) {
+  return Array(to)
+    .fill(null)
+    .map((_, i) => i + 1)
+    .filter((i) => i >= from);
+}
