@@ -40,6 +40,6 @@ const moofTestString = `
   [traf] 8
   [traf] 32
     [tfhd] 16
-      track ID=1
+      track ID = 1
     [trun] 8
 `.trimStart();

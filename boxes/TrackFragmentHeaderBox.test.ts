@@ -19,7 +19,7 @@ describe.only("tfhd box", () => {
     ));
 
   it("serializes the box as string", () =>
-    expect(tfhd.toString()).toBe("[tfhd] 16\n  track ID=1\n"));
+    expect(tfhd.toString()).toBe("[tfhd] 16\n  track ID = 1\n"));
 
   describe("adding optional fields", () => {
     const tfhd = new TrackFragmentHeaderBox({
@@ -53,7 +53,7 @@ describe.only("tfhd box", () => {
         expect(tfhd.toString()).toBe(
 `
 [tfhd] 40
-  track ID=1
+  track ID = 1
   base data offset = 0
   sample description index = 1
   default sample duration = 512

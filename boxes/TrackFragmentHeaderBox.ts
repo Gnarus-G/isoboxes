@@ -48,7 +48,7 @@ export default class TrackFragmentHeaderBox extends Box {
 
   protected fieldsAsStrings(): string[] {
     return [
-      this.fields.trackID.toString("track ID="),
+      this.fields.trackID.toString("track ID = "),
       this.fields.baseDataOffset?.toString("base data offset = "),
       this.fields.sampleDescriptionIndex?.toString(
         "sample description index = "

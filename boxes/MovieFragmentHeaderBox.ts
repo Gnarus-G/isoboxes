@@ -17,6 +17,6 @@ export default class MovieFragmentHeaderBox extends Box {
   }
 
   protected override fieldsAsStrings(): string[] {
-    return [`sequence_number=${this.sequence_number}`];
+    return [`sequence_number = ${this.sequence_number}`];
   }
 }
