@@ -52,7 +52,7 @@ describe.only("tfhd box", () => {
       it("serializes to string", () => {
         expect(tfhd.toString()).toBe(
 `
-[tfhd] size=40
+[tfhd] size=40, flags=3b
   track ID = 1
   base data offset = 0
   sample description index = 1

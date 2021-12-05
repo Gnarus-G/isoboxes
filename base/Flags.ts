@@ -1,8 +1,8 @@
 export default class Flags {
-  readonly buffer;
+  readonly buffer: Buffer;
 
-  constructor(values: number) {
+  constructor(readonly value: number) {
     this.buffer = Buffer.alloc(3);
-    this.buffer.writeUIntBE(values, 0, 3);
+    this.buffer.writeUIntBE(value, 0, 3);
   }
 }
