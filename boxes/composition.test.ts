@@ -36,10 +36,10 @@ describe("composing boxes as children", () => {
 });
 
 const moofTestString = `
-[moof] 48
-  [traf] 8
-  [traf] 32
-    [tfhd] 16
+[moof] size=48
+  [traf] size=8
+  [traf] size=32
+    [tfhd] size=16
       track ID = 1
-    [trun] 8
+    [trun] size=8
 `.trimStart();

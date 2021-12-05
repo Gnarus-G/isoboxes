@@ -31,9 +31,9 @@ describe("mfhd box", () => {
   });
 
   it("serializes the box as string", () => {
-    expect(mfhd1.toString()).toBe("[mfhd] 16\n  sequence_number = 1\n");
+    expect(mfhd1.toString()).toBe("[mfhd] size=16\n  sequence_number = 1\n");
     expect(new MovieFragmentHeaderBox().toString()).toBe(
-      "[mfhd] 16\n  sequence_number = 4\n"
+      "[mfhd] size=16\n  sequence_number = 4\n"
     );
   });
 });

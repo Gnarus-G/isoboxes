@@ -10,5 +10,5 @@ describe("moof box", () => {
     ));
 
   it("serializes the box as string", () =>
-    expect(moof.toString()).toBe("[moof] 8\n"));
+    expect(moof.toString()).toBe("[moof] size=8\n"));
 });

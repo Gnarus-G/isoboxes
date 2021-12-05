@@ -17,6 +17,6 @@ export default class BoxHeader {
   }
 
   toString() {
-    return `[${this.type}] ${this.size.getValue()}`;
+    return `[${this.type}] size=${this.size.getValue()}`;
   }
 }
