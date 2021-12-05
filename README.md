@@ -10,7 +10,7 @@ To be able to generate a valid mp4 file in memory. It would be cool, specificall
   - https://www.youtube.com/watch?v=iJAPTY3B7yE
   - https://medium.com/@qingzhong/android-video-playback-tutorial-part2-the-structure-of-mp4-file-cba021c6f67
   - https://xhelmboyx.tripod.com/formats/mp4-layout.txt
-  - https://b.goeswhere.com/ISO_IEC_14496-12_2015.pd4
+  - https://b.goeswhere.com/ISO_IEC_14496-12_2015.pdf
   - http://uvcentral.com/files/CFFMediaFormat-2_1.pdf
 
 ### Mind you

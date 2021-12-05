@@ -10,6 +10,11 @@ export const fourBytesHolding = (value: number) => {
   return bytes.writeUInt32BE(value), bytes;
 };
 
+export const fourBytesHoldingSigned = (value: number) => {
+  const bytes = Buffer.alloc(4);
+  return bytes.writeInt32BE(value), bytes;
+};
+
 export const eightBytesHolding = (value: bigint) => {
   const bytes = Buffer.alloc(8);
   return bytes.writeBigUInt64BE(value), bytes;

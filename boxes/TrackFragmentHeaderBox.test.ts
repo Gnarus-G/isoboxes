@@ -3,7 +3,7 @@ import Uint64 from "../base/Uint64";
 import { b, bufferOf, eightBytesHolding, fourBytesHolding } from "../utils/buffers";
 import TrackFragmentHeaderBox from "./TrackFragmentHeaderBox";
 
-describe.only("tfhd box", () => {
+describe("tfhd box", () => {
   const tfhd = new TrackFragmentHeaderBox({
     trackID: new Uint32(1),
   });

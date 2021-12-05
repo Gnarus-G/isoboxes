@@ -19,8 +19,13 @@ export default class FullBoxHeader extends BoxHeader {
   }
 
   override toString(): string {
-    if (this.flags.value === 0) return super.toString();
+    const version = this.versionBuffer.readUInt8(0);
+    const flagValue = this.flags.value;
 
-    return `${super.toString()}, flags=${this.flags.value.toString(16)}`;
+    const versionString = version > 0 ? ", version=" + version : "";
+    const flagsString =
+      flagValue > 0 ? `, flags=${flagValue.toString(16)}` : "";
+
+    return super.toString() + versionString + flagsString;
   }
 }
