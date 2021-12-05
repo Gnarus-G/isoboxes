@@ -1,5 +1,7 @@
 import PlainBox from "../base/PlainBox";
+import Uint32 from "../base/Uint32";
 import { fourBytesHolding } from "../utils/buffers";
+import TrackFragmentHeaderBox from "./TrackFragmentHeaderBox";
 
 describe("composing boxes as children", () => {
   const moof = new PlainBox("moof").add(new PlainBox("traf"));
@@ -9,21 +11,23 @@ describe("composing boxes as children", () => {
 
   it("adds it to the collection of children", () => {
     const traf = new PlainBox("traf")
-      .add(new PlainBox("tfhd"))
+      .add(new TrackFragmentHeaderBox({ trackID: new Uint32(1) }))
       .add(new PlainBox("trun"));
     moof.add(traf);
 
     expect(moof.toString()).toEqual(moofTestString);
     expect(moof.toBuffer()).toEqual(
       Buffer.concat([
-        fourBytesHolding(40),
+        fourBytesHolding(48),
         Buffer.from("moof"),
         fourBytesHolding(8),
         Buffer.from("traf"),
-        fourBytesHolding(24),
+        fourBytesHolding(32),
         Buffer.from("traf"),
-        fourBytesHolding(8),
+        fourBytesHolding(16),
         Buffer.from("tfhd"),
+        fourBytesHolding(0),
+        fourBytesHolding(1),
         fourBytesHolding(8),
         Buffer.from("trun"),
       ])
@@ -32,9 +36,10 @@ describe("composing boxes as children", () => {
 });
 
 const moofTestString = `
-[moof] 40
+[moof] 48
   [traf] 8
-  [traf] 24
-    [tfhd] 8
+  [traf] 32
+    [tfhd] 16
+      track ID=1
     [trun] 8
 `.trimStart();

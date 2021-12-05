@@ -36,7 +36,7 @@ export default abstract class Box {
 
   private toStringAux(i = 1): string {
     const fieldsString = this.fieldsAsStrings()
-      .map((str) => indent(str, i, "\n  "))
+      .map((str) => "\n" + indent(str, i))
       .join("");
 
     const childrenString = this.children
