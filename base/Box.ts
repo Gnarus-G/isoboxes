@@ -1,3 +1,4 @@
+import { indent } from "../utils";
 import BoxHeader from "./BoxHeader";
 
 export default abstract class Box {
@@ -31,15 +32,15 @@ export default abstract class Box {
     return this.toStringAux();
   }
 
-  protected abstract fieldsAsString(): string | null;
+  protected abstract fieldsAsStrings(): string[];
 
   private toStringAux(i = 1): string {
-    const fieldsString = this.fieldsAsString()
-      ? "\n" + "  ".repeat(i) + this.fieldsAsString()
-      : "";
+    const fieldsString = this.fieldsAsStrings()
+      .map((str) => indent(str, i, "\n  "))
+      .join("");
 
     const childrenString = this.children
-      .map((box) => "  ".repeat(i) + box.toStringAux(i + 1))
+      .map((box) => indent(box.toStringAux(i + 1), i))
       .join("");
 
     return `${this.header.toString()}${fieldsString}\n${childrenString}`;

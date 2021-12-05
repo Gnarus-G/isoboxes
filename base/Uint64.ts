@@ -1,4 +1,4 @@
-import { eightBytesHolding } from "../utils";
+import { eightBytesHolding } from "../utils/buffers";
 
 export default class Uint64 {
   private value: bigint;
@@ -20,6 +20,13 @@ export default class Uint64 {
 
   toBuffer() {
     return eightBytesHolding(this.getValue());
+  }
+
+  toString(prefix: string, radix?: number): string;
+  toString(radix?: number): string;
+  toString(arg?: string | number, radix?: number) {
+    if (typeof arg === "string") return arg + this.value.toString(radix);
+    return this.value.toString(arg);
   }
 }
 

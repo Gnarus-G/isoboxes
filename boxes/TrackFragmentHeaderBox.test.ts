@@ -1,9 +1,9 @@
 import Uint32 from "../base/Uint32";
 import Uint64 from "../base/Uint64";
-import { b, bufferOf, eightBytesHolding, fourBytesHolding } from "../utils";
+import { b, bufferOf, eightBytesHolding, fourBytesHolding } from "../utils/buffers";
 import TrackFragmentHeaderBox from "./TrackFragmentHeaderBox";
 
-describe("tfhd box", () => {
+describe.only("tfhd box", () => {
   const tfhd = new TrackFragmentHeaderBox({
     trackID: new Uint32(1),
   });
@@ -24,7 +24,7 @@ describe("tfhd box", () => {
   describe("adding optional fields", () => {
     const tfhd = new TrackFragmentHeaderBox({
       trackID: new Uint32(1),
-      base_data_offset: new Uint64(0),
+      baseDataOffset: new Uint64(0),
       sampleDescriptionIndex: new Uint32(1),
       defaultSampleDuration: new Uint32(512),
       defaultSampleSize: new Uint32(523),
@@ -48,5 +48,19 @@ describe("tfhd box", () => {
           fourBytesHolding(1010000)
         )
       ));
+
+      it("serializes to string", () => {
+        expect(tfhd.toString()).toBe(
+`
+[tfhd] 40
+  track ID=1
+  base data offset = 0
+  sample description index = 1
+  default sample duration = 512
+  default sample size = 523
+  default sample flags = 1010000
+`.trimStart()
+        )
+      })
   });
 });

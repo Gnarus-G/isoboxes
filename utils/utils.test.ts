@@ -5,7 +5,7 @@ import {
   EMPTY_BUFFER,
   fourBytesHolding,
   zeroBytes,
-} from ".";
+} from "./buffers";
 
 describe("b function", () => {
   it("should return a buffer", () => expect(b`sd`).toBeInstanceOf(Buffer));

@@ -1,4 +1,4 @@
-import { b, bufferOf, fourBytesHolding, zeroBytes } from "../utils";
+import { b, bufferOf, fourBytesHolding, zeroBytes } from "../utils/buffers";
 import MovieFragmentHeaderBox from "./MovieFragmentHeaderBox";
 
 describe("mfhd box", () => {

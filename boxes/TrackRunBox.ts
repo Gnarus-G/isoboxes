@@ -1,7 +1,7 @@
 import Box from "../base/Box";
 import Flags from "../base/Flags";
 import FullBoxHeader from "../base/FullBoxHeader";
-import { EMPTY_BUFFER } from "../utils";
+import { EMPTY_BUFFER } from "../utils/buffers";
 
 export enum TrFlags {
   DATA_OFFSET_PRESENT = 0x000001,
@@ -20,7 +20,7 @@ export default class TrackRunBox extends Box {
   protected fieldsAsBuffer(): Buffer {
     return EMPTY_BUFFER;
   }
-  protected fieldsAsString(): string | null {
-    return null;
+  protected fieldsAsStrings(){
+    return [];
   }
 }

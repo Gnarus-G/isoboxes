@@ -1,6 +1,6 @@
 import Box from "../base/Box";
 import BoxHeader from "../base/BoxHeader";
-import { EMPTY_BUFFER } from "../utils";
+import { EMPTY_BUFFER } from "../utils/buffers";
 
 export default class TrackFragmentBox extends Box {
   constructor() {
@@ -10,7 +10,7 @@ export default class TrackFragmentBox extends Box {
   protected fieldsAsBuffer(): Buffer {
     return EMPTY_BUFFER;
   }
-  protected fieldsAsString(): string | null {
-    return null
+  protected fieldsAsStrings(): string[] {
+    return [];
   }
 }

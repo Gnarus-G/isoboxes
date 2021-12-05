@@ -1,7 +1,7 @@
 import Box from "../base/Box";
 import Flags from "../base/Flags";
 import FullBoxHeader from "../base/FullBoxHeader";
-import { fourBytesHolding } from "../utils";
+import { fourBytesHolding } from "../utils/buffers";
 
 export default class MovieFragmentHeaderBox extends Box {
   private static sequence_count = 1;
@@ -16,7 +16,7 @@ export default class MovieFragmentHeaderBox extends Box {
     return fourBytesHolding(this.sequence_number);
   }
 
-  protected override fieldsAsString(): string {
-    return `sequence_number=${this.sequence_number}`;
+  protected override fieldsAsStrings(): string[] {
+    return [`sequence_number=${this.sequence_number}`];
   }
 }

@@ -1,5 +1,5 @@
 import PlainBox from "../base/PlainBox";
-import { fourBytesHolding } from "../utils";
+import { fourBytesHolding } from "../utils/buffers";
 
 describe("composing boxes as children", () => {
   const moof = new PlainBox("moof").add(new PlainBox("traf"));

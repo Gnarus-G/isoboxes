@@ -1,4 +1,4 @@
-import { EMPTY_BUFFER } from "../utils";
+import { EMPTY_BUFFER } from "../utils/buffers";
 import Box from "./Box";
 import BoxHeader from "./BoxHeader";
 
@@ -14,7 +14,7 @@ export default class PlainBox extends Box {
   protected override fieldsAsBuffer(): Buffer {
     return EMPTY_BUFFER;
   }
-  protected override fieldsAsString(): string | null {
-    return null;
+  protected override fieldsAsStrings(){
+    return [];
   }
 }
